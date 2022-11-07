@@ -38,6 +38,8 @@ the statement. As you can see, this is an example of an exception being thrown. 
 `SyntaxError` is an error that not only informs the programmer that there is an error with the syntax of the code, but
 also prints the line where the error occurred with an arrow that indicates where the error is located in that line.
 
+## Types of Exceptions
+
 There are various exceptions in Python that are derived (inherited) from a base class called the `Exception` class.
 Exceptions are a significant part of Python, and they come with a number of built-in features.
 
@@ -87,7 +89,7 @@ the `except` keyword to provide code to handle the error when it occurs.
 
 ## Process of Handling Exception
 
-When an error occurs, Python interpreter creates an object called the _exception object_. This object contains
+When an error occurs, Python interpreter creates an object called the **_exception object_**. This object contains
 information about the error like its type, file name and position in the program where the error has occurred.
 The object is handed over to the runtime system so that it can find an appropriate code to handle this particular
 exception. This process of creating an exception object and handing it over to the runtime system is called throwing an
@@ -107,13 +109,70 @@ after searching all the methods in the call stack, then the program execution st
 Note: A programmer can also create custom exceptions to suit one’s requirements. These are called _user-defined
 exceptions_. We will learn how to handle exceptions in the next section.
 
-```python
-...
+## Catching Exceptions
+
+An exception is said to be caught when a code that is designed to handle a particular exception is executed. Exceptions,
+if any, are caught in the try block and handled in the except block. While writing or debugging a program, a user might
+doubt an exception to occur in a particular part of the code. Such suspicious lines of codes are put inside a `try`
+block.
+**Every `try` block is followed by an `except` block**. The appropriate code to handle each of the possible exceptions (
+in the code inside the try block) are written inside the except clause.
+
+- The `try` block lets you test a block of code for errors.
+- The `except` block lets you handle the error.
+- The `else` block lets you execute code when there is no error.
+- The `finally` block lets you execute code, regardless of the result of the `try` and `except` blocks.
+
+While executing the program, if an exception is encountered, further execution of the code inside the `try` block is
+stopped and the control is transferred to the `except` block. The syntax of `try` … `except` clause is as follows:
+
+```text
 try:
-    pass
-except:
-    pass
-...
+    [program statements where exceptions might occur]
+except [exception-name]:
+    [code for exception handling if the exception-name error is encountered]
 ```
 
-## Catching Exceptions
+Consider the Program 1-2 given below:
+
+```python
+import sys
+
+file_object = open("/user/ecommerce/data.csv", "r")
+```
+
+Based on the analysis of the above code, which type of error is likely going to occur during the execution of the code
+as a result of analyzing its structure?
+<details>
+  <summary>Answer</summary>
+
+```text
+Traceback (most recent call last):
+  File "main.py", line 3, in <module>
+    file_object = open("/user/ecommerce/data.csv", "r")
+FileNotFoundError: [Errno 2] No such file or directory: '/user/ecommerce/data.csv'    
+```
+
+</details>
+
+<hr>
+
+```python
+a = 5
+b = 0
+print(a / b)
+```
+
+Based on the analysis of the above code, which type of error is likely going to occur during the execution of the code
+as a result of analyzing its structure?
+<details>
+  <summary>Answer</summary>
+
+```text
+Traceback (most recent call last):
+  File "main.py", line 3, in <module>
+    print (a/b)
+ZeroDivisionError: division by zero
+```
+
+</details>
