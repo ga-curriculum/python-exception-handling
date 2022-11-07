@@ -14,7 +14,11 @@
 
 ## What are exceptions?
 
-An exception is an error that occurs during execution of a program, sometimes called a runtime error.
+There may be times when, while executing a Python program, an issue arises that prevents the program from executing at
+all, or if it does execute, the program generates unexpected output or behaves abnormally. This type of error is caused
+by syntax errors, runtime errors, or logical errors in the code. In Python, exceptions are errors that get triggered
+automatically. There is however the possibility that exceptions can be forcedly triggered and handled through the code
+of the program. As part of this lesson, we will learn about how to handle exceptions in Python programs.
 
 The first error that programmers (even experienced ones) are confronted with is when the code has incorrect syntax,
 meaning that the code instructions are not correctly formatted.
@@ -29,15 +33,16 @@ Consider this example of a syntax error:
 SyntaxError: invalid syntax
 ```
 
-In the case of the for declaration, there is an error that occurs due to the fact that there is no colon at the end of
+In the case of the `for` declaration, there is an error that occurs due to the fact that there is no colon at the end of
 the statement. As you can see, this is an example of an exception being thrown. It is important to remember that
-SyntaxError is an error that not only informs the programmer that there is an error with the syntax of the code, but
+`SyntaxError` is an error that not only informs the programmer that there is an error with the syntax of the code, but
 also prints the line where the error occurred with an arrow that indicates where the error is located in that line.
 
-There are various exceptions in Python that are derived (inherited) from a base class called the Exception class.
+There are various exceptions in Python that are derived (inherited) from a base class called the `Exception` class.
 Exceptions are a significant part of Python, and they come with a number of built-in features.
 
-As per Python's documentation, the following is a list of the built-in exceptions and what they mean.
+As per Python's [documentation](https://docs.python.org/3/library/exceptions.html), the following is a list of the
+built-in exceptions and what they mean.
 
 | Exception | Cause |
 |-------|-------|
@@ -73,3 +78,42 @@ bound to that  variable |
 | UnicodeTranslateError | Raised when a Unicode-related error occurs during translating |
 | ValueError | Raised when a function gets argument of correct type but improper value |
 | ZeroDivisionError | Raised when second operand of division or modulo operation is zero | 
+
+As shown in the table above, every time an exception occurs and an exception error is raised in the interpreter, the
+execution of a program is halted.
+
+You can use the `try` keyword to catch exceptions thrown by the code, and when an exception occurs, you can use
+the `except` keyword to provide code to handle the error when it occurs.
+
+## Process of Handling Exception
+
+When an error occurs, Python interpreter creates an object called the _exception object_. This object contains
+information about the error like its type, file name and position in the program where the error has occurred.
+The object is handed over to the runtime system so that it can find an appropriate code to handle this particular
+exception. This process of creating an exception object and handing it over to the runtime system is called throwing an
+exception. It is important to note that when an exception occurs while executing a particular program statement, the
+control jumps to an exception handler, abandoning execution of the remaining program statements.
+
+The runtime system searches the entire program for a block of code, called the _exception handler_ that can handle the
+raised exception. It first searches for the method in which the error has occurred and the exception has been raised. If
+not found, then it searches the method from which this method (in which exception was raised) was called. This
+hierarchical search in reverse order continues till the exception handler is found. This entire list of methods is known
+as _call stack_.
+
+When a suitable handler is found in the call stack, it is executed by the runtime process. This process of executing a
+suitable handler is known as catching the exception. If the runtime system is not able to find an appropriate exception
+after searching all the methods in the call stack, then the program execution stops.
+
+Note: A programmer can also create custom exceptions to suit one’s requirements. These are called _user-defined
+exceptions_. We will learn how to handle exceptions in the next section.
+
+```python
+...
+try:
+    pass
+except:
+    pass
+...
+```
+
+## Catching Exceptions
