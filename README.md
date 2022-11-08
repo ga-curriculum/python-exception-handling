@@ -350,20 +350,21 @@ print("Congratulations! You guessed it correctly.")
     - Exception Handling
     - Throwing an exception
     - Catching an exception
-- Consider the code given below and fill in the blanks.
-  ```python
-  print(" Learning Exceptions...")
-  try:
-      num1 = int(input("Enter the first number"))
-      num2 = int(input("Enter the second number"))
-      quotient = (num1 / num2)
-      print("Both the numbers entered were correct")
-  except _____________:  # to enter only integers
-      print(" Please enter only numbers")
-  except ____________:  # Denominator should not be zero
-      print(" Number 2 should not be zero")
-  else:
-      print(" Great .. you are a good programmer")
-      print(" JOB OVER... GO GET SOME REST")
 
+Consider the code given below and fill in the blanks.
+
+```python
+print(" Learning Exceptions...")
+try:
+    num1 = int(input("Enter the first number"))
+    num2 = int(input("Enter the second number"))
+    quotient = (num1 / num2)
+    print("Both the numbers entered were correct")
+except _____________:  # to enter only integers
+    print(" Please enter only numbers")
+except ____________:  # Denominator should not be zero
+    print(" Number 2 should not be zero")
+else:
+    print(" Great .. you are a good programmer")
+    print(" JOB OVER... GO GET SOME REST")
 ```
