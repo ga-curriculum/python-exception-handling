@@ -4,7 +4,7 @@
 |---------------------------|--------|----------|-----------------------
 | Python Exception Handling | Lesson | 2:00     | Suresh Melvin Sigera |
 
-### Objectives
+## Objectives
 
 *After this lesson, students will be able to:*
 
@@ -12,7 +12,7 @@
 - Find errors and debug code
 - Handle multiple exception during the runtime
 
-## What are exceptions?
+### What are exceptions?
 
 There may be times when, while executing a Python program, an issue arises that prevents the program from executing at
 all, or if it does execute, the program generates unexpected output or behaves abnormally. This type of error is caused
@@ -38,7 +38,7 @@ the statement. As you can see, this is an example of an exception being thrown. 
 `SyntaxError` is an error that not only informs the programmer that there is an error with the syntax of the code, but
 also prints the line where the error occurred with an arrow that indicates where the error is located in that line.
 
-## Types of Exceptions
+### Types of Exceptions
 
 There are various exceptions in Python that are derived (inherited) from a base class called the `Exception` class.
 Exceptions are a significant part of Python, and they come with a number of built-in features.
@@ -87,7 +87,7 @@ execution of a program is halted.
 You can use the `try` keyword to catch exceptions thrown by the code, and when an exception occurs, you can use
 the `except` keyword to provide code to handle the error when it occurs.
 
-## Process of Handling Exception
+### Process of Handling Exception
 
 When an error occurs, Python interpreter creates an object called the **_exception object_**. This object contains
 information about the error like its type, file name and position in the program where the error has occurred.
@@ -109,7 +109,7 @@ after searching all the methods in the call stack, then the program execution st
 Note: A programmer can also create custom exceptions to suit one’s requirements. These are called _user-defined
 exceptions_. We will learn how to handle exceptions in the next section.
 
-## Catching Exceptions
+### Catching Exceptions
 
 An exception is said to be caught when a code that is designed to handle a particular exception is executed. Exceptions,
 if any, are caught in the try block and handled in the except block. While writing or debugging a program, a user might
@@ -176,3 +176,75 @@ ZeroDivisionError: division by zero
 ```
 
 </details>
+
+You can catch the exception by putting your code in the `try` block and your error handling code for each exception in
+the `exception` block as shown here:
+
+```python
+import sys
+
+try:
+    file_object = open("/user/ecommerce/data.csv", "r")
+except FileNotFoundError:
+    print("Cannot load the file")
+```
+
+Sometimes, a single piece of code might be suspected to have more than one type of error. For handling such situations,
+we can have multiple `except` blocks for a single `try` block as shown below.
+
+```python
+try:
+    file_object = open("/user/ecommerce/data.txt", "r")
+    data = file_object.read()
+    print(data)
+except IOError:
+    print("file cannot be opened")
+except ValueError:
+    print("function receives an argument that has the right type but an invalid value")
+except EOFError:
+    print("When the input reaches the end of a file and no more data can be read")
+print("rest of the program")
+```
+
+### The `else` and `finally` clause
+
+There are several other components of exception handling and that are the `else` and `finally` clauses.
+
+We have already been able to use `try` and `except` statements, which are used to catch errors. Let's now look at
+the `else` and `finally` statements as well.
+
+The `else` clause is used to execute code when the program does not raise an exception. It is also better to use
+the `else` clause than to add additional code to the `try` clause. This is because it avoids unintentionally catching an
+exception that wasn't raised by the code being protected by the `try`/`except` statements.
+
+Consider the example:
+
+```python
+while True:
+    try:
+        x = int(input("Please enter a number: "))
+    except ValueError:
+        print("Please enter a valid number!")
+    else:
+        print("%s squared is %s" % (x, x ** 2))
+```
+
+**The `finally` clause** : This clause is meant to define **clean-up actions** that must be **performed regardless of
+whether an exception was raised or not**. A `finally` clause must always be executed before leaving the `try`/`except`
+statement, whether an exception has occurred or not. This is usually used to clean up, like to close an open file.
+
+Let's include the `finally` clause in our example:
+
+```python
+count = 0
+
+while True:
+    try:
+        x = int(input("Please enter a number: "))
+    except ValueError:
+        print("Please enter a valid number!")
+    else:
+        print("%s squared is %s" % (x, x ** 2))
+    finally:
+        print("Ran %s time(s)" % count)
+```
