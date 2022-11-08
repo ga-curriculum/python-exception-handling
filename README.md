@@ -16,9 +16,11 @@
 
 There may be times when, while executing a Python program, an issue arises that prevents the program from executing at
 all, or if it does execute, the program generates unexpected output or behaves abnormally. This type of error is caused
-by syntax errors, runtime errors, or logical errors in the code. In Python, exceptions are errors that get triggered
-automatically. There is however the possibility that exceptions can be forcedly triggered and handled through the code
-of the program. As part of this lesson, we will learn about how to handle exceptions in Python programs.
+by `syntax errors`, `runtime errors`, or `logical errors` in the code.
+
+In Python, exceptions are errors that get triggered automatically. There is however the possibility that exceptions can
+be forcedly triggered and handled through the code of the program. As part of this lesson, we will learn about how to
+handle exceptions in Python programs.
 
 The first error that programmers (even experienced ones) are confronted with is when the code has incorrect syntax,
 meaning that the code instructions are not correctly formatted.
@@ -38,7 +40,7 @@ the statement. As you can see, this is an example of an exception being thrown. 
 `SyntaxError` is an error that not only informs the programmer that there is an error with the syntax of the code, but
 also prints the line where the error occurred with an arrow that indicates where the error is located in that line.
 
-### Types of Exceptions
+### Types of exceptions
 
 There are various exceptions in Python that are derived (inherited) from a base class called the `Exception` class.
 Exceptions are a significant part of Python, and they come with a number of built-in features.
@@ -87,14 +89,15 @@ execution of a program is halted.
 You can use the `try` keyword to catch exceptions thrown by the code, and when an exception occurs, you can use
 the `except` keyword to provide code to handle the error when it occurs.
 
-### Process of Handling Exception
+### Process of handling exception
 
 When an error occurs, Python interpreter creates an object called the **_exception object_**. This object contains
 information about the error like its type, file name and position in the program where the error has occurred.
+
 The object is handed over to the runtime system so that it can find an appropriate code to handle this particular
-exception. This process of creating an exception object and handing it over to the runtime system is called throwing an
-exception. It is important to note that when an exception occurs while executing a particular program statement, the
-control jumps to an exception handler, abandoning execution of the remaining program statements.
+exception. This process of creating an **exception object** and handing it over to the runtime system is called **
+throwing** an exception. It is important to note that when an exception occurs while executing a particular program
+statement, the control jumps to an exception handler, abandoning execution of the remaining program statements.
 
 The runtime system searches the entire program for a block of code, called the _exception handler_ that can handle the
 raised exception. It first searches for the method in which the error has occurred and the exception has been raised. If
@@ -109,7 +112,7 @@ after searching all the methods in the call stack, then the program execution st
 Note: A programmer can also create custom exceptions to suit one’s requirements. These are called _user-defined
 exceptions_. We will learn how to handle exceptions in the next section.
 
-### Catching Exceptions
+### Catching exceptions using `try` and `except`
 
 An exception is said to be caught when a code that is designed to handle a particular exception is executed. Exceptions,
 if any, are caught in the try block and handled in the except block. While writing or debugging a program, a user might
@@ -248,3 +251,121 @@ while True:
     finally:
         print("Ran %s time(s)" % count)
 ```
+
+### Creating custom exception
+
+In Python, users can define custom exceptions by creating a new class. This exception class has to be derived, either
+directly or indirectly, from the built-in Exception class. Most of the built-in exceptions are also derived from this
+class.
+
+`error.py`
+
+```python
+class Error(Exception):
+    """Base class for other exceptions"""
+    pass
+
+
+class ValueTooSmallError(Error):
+    """Raised when the input value is too small"""
+    pass
+
+
+class ValueTooLargeError(Error):
+    """Raised when the input value is too large"""
+    pass
+
+```
+
+`demo.py`
+
+```python
+from errors import ValueTooLargeError, ValueTooSmallError
+
+# you need to guess this number
+number = 10
+
+# user guesses a number until he/she gets it right
+while True:
+    try:
+        i_num = int(input("Enter a number: "))
+        if i_num < number:
+            raise ValueTooSmallError
+        elif i_num > number:
+            raise ValueTooLargeError
+        break
+    except ValueTooSmallError:
+        print("This value is too small, try again!")
+        print()
+    except ValueTooLargeError:
+        print("This value is too large, try again!")
+        print()
+
+print("Congratulations! You guessed it correctly.")
+
+```
+
+### Summary
+
+- Syntax errors or parsing errors are detected when
+  we have not followed the rules of the particular
+  programming language while writing a program.
+- When syntax error is encountered, Python displays
+  the name of the error and a small description
+  about the error.
+- The execution of the program will start only after
+  the syntax error is rectified.
+- An exception is a Python object that represents
+  an error.
+- Syntax errors are also handled as exceptions.
+- The exception needs to be handled by the
+  programmer so that the program does not
+  terminate abruptly.
+- When an exception occurs during execution
+  of a program and there is a built-in exception
+  defined for that, the error message written in that
+  exception is displayed. The programmer then has
+  to take appropriate action and handle it.
+- Some of the commonly occurring built-in
+  exceptions are `SyntaxError`, `ValueError`,
+  `IOError`, `KeyboardInterrupt`, `ImportError`,
+  `EOFError`, `ZeroDivisionError`, `IndexError`,
+  `NameError`, `IndentationError`, `TypeError`,and
+  `OverFlowerror`.
+- An exception is said to be caught when a code
+  that is designed to handle a particular exception
+  is executed.
+- An exception is caught in the try block and
+  handles in except block.
+
+### Exercise
+
+- When are the following built-in exceptions raised? Give
+  examples to support your answers.
+  -  `ImportError`
+  - `IOError`
+  -  `NameError`
+  -  `ZeroDivisionError`
+- Define the following:
+  - Exception Handling
+  - Throwing an exception
+  - Catching an exception
+- Consider the code given below and fill in the blanks.
+  ```python
+  print(" Learning Exceptions...")
+  try:
+      num1 = int(input("Enter the first number"))
+      num2 = int(input("Enter the second number"))
+      quotient = (num1 / num2)
+      print("Both the numbers entered were correct")
+  except _____________:  # to enter only integers
+      print(" Please enter only numbers")
+  except ____________:  # Denominator should not be zero
+      print(" Number 2 should not be zero")
+  else:
+      print(" Great .. you are a good programmer")
+      print(" JOB OVER... GO GET SOME REST")
+
+```
+
+# 
