@@ -342,14 +342,14 @@ print("Congratulations! You guessed it correctly.")
 
 - When are the following built-in exceptions raised? Give
   examples to support your answers.
-  -  `ImportError`
-  - `IOError`
-  -  `NameError`
-  -  `ZeroDivisionError`
+    - `ImportError`
+    - `IOError`
+    - `NameError`
+    - `ZeroDivisionError`
 - Define the following:
-  - Exception Handling
-  - Throwing an exception
-  - Catching an exception
+    - Exception Handling
+    - Throwing an exception
+    - Catching an exception
 - Consider the code given below and fill in the blanks.
   ```python
   print(" Learning Exceptions...")
@@ -367,5 +367,3 @@ print("Congratulations! You guessed it correctly.")
       print(" JOB OVER... GO GET SOME REST")
 
 ```
-
-# 
