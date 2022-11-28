@@ -368,3 +368,11 @@ else:
     print(" Great .. you are a good programmer")
     print(" JOB OVER... GO GET SOME REST")
 ```
+  
+### Further Reading
+
+This section provides more resources on the topic if you are looking to go deeper.
+  
+- [What is exception handling?](https://www.techtarget.com/searchsoftwarequality/definition/error-handling)
+- [The Python Exception Class Hierarchy](https://blog.airbrake.io/blog/python/class-hierarchy)
+- [Python Exceptions are Exceptional - and so much more than error handling!](http://conquerprogramming.com/blog/3-Exceptions.html)
